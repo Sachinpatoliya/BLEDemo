@@ -57,6 +57,11 @@ class BluetoothListViewController: UIViewController {
         isRefresh ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
         self.refreshButton.isHidden = isRefresh
         self.activityIndicator.isHidden = !isRefresh
+        self.noDevicesFound.text = viewModel.noDataAvailableString
+        if !viewModel.isBluetoothConnected{
+            self.refreshButton.isHidden = true
+            self.activityIndicator.isHidden = true
+        }
     }
 }
 

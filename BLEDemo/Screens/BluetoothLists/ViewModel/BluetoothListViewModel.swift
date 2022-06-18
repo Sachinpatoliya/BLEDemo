@@ -12,9 +12,14 @@ class BluetoothListViewModel: NSObject {
     var bluetoothService: BluetoothListViewModel!
     var timer = Timer()
     var stopTimer = Timer()
+    var isBluetoothConnected = false
+    var noDataAvailableString = ""
 
     var bluetoothList = [BluetoothListModel]() {
         didSet {
+            if bluetoothList.count <= 0 {
+                self.noDataAvailableString = CommonStrings.no_devices_found
+            }
             reloadTableView?()
         }
     }
@@ -59,7 +64,6 @@ class BluetoothListViewModel: NSObject {
         startTimer()
         manager?.stopScan()
     }
-
 }
 
 extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -83,11 +87,26 @@ extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate
         print(central.state)
         switch central.state {
         case .poweredOn:
+            self.noDataAvailableString = ""
+            isBluetoothConnected = true
             scanBLEDevice()
             break
+        case .unauthorized:
+            self.noDataAvailableString = CommonStrings.bluetooth_not_connected
+            self.bluetoothNotConnected()
+            break
+        case .poweredOff:
+            self.noDataAvailableString = CommonStrings.turn_bluetooth_on
+            self.bluetoothNotConnected()
+            break
         default:
-            reloadTableView?()
             break
         }
+    }
+    
+    func bluetoothNotConnected(){
+        isBluetoothConnected = false
+        refreshData?(false)
+        reloadTableView?()
     }
 }

@@ -18,6 +18,7 @@
 		BBE94CEE285D9DE300AA17E0 /* BluetoothCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE94CE9285D9DE300AA17E0 /* BluetoothCell.xib */; };
 		BBE94CEF285D9DE300AA17E0 /* BluetoothCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE94CEA285D9DE300AA17E0 /* BluetoothCell.swift */; };
 		BBE94CF0285D9DE300AA17E0 /* BluetoothListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE94CEB285D9DE300AA17E0 /* BluetoothListViewController.swift */; };
+		BBE94CF3285DC76D00AA17E0 /* CommonStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE94CF2285DC76D00AA17E0 /* CommonStrings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BBE94CE9285D9DE300AA17E0 /* BluetoothCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothCell.xib; sourceTree = "<group>"; };
 		BBE94CEA285D9DE300AA17E0 /* BluetoothCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothCell.swift; sourceTree = "<group>"; };
 		BBE94CEB285D9DE300AA17E0 /* BluetoothListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothListViewController.swift; sourceTree = "<group>"; };
+		BBE94CF2285DC76D00AA17E0 /* CommonStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonStrings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		BBE94CC9285D9B5400AA17E0 /* BLEDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BBE94CF1285DC75900AA17E0 /* Commons */,
 				BBE94CE1285D9DE300AA17E0 /* Screens */,
 				BBE94CCA285D9B5400AA17E0 /* AppDelegate.swift */,
 				BBE94CCC285D9B5400AA17E0 /* SceneDelegate.swift */,
@@ -128,6 +131,14 @@
 				BBE94CEA285D9DE300AA17E0 /* BluetoothCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BBE94CF1285DC75900AA17E0 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				BBE94CF2285DC76D00AA17E0 /* CommonStrings.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBE94CD5285D9B5400AA17E0 /* BLEDemo.xcdatamodeld in Sources */,
+				BBE94CF3285DC76D00AA17E0 /* CommonStrings.swift in Sources */,
 				BBE94CEC285D9DE300AA17E0 /* BluetoothListViewModel.swift in Sources */,
 				BBE94CCB285D9B5400AA17E0 /* AppDelegate.swift in Sources */,
 				BBE94CED285D9DE300AA17E0 /* BluetoothListModel.swift in Sources */,
