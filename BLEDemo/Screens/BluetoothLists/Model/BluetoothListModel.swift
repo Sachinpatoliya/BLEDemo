@@ -11,5 +11,13 @@ typealias Bluetooths = [BluetoothListModel]
 
 // MARK: - Bluetooths
 struct BluetoothListModel {
-
+    var name: String = ""
+    var RSSIId: NSNumber = 0
+    var UUID: String = ""
+    
+    init(name: String, RSSIId: NSNumber, UUID: String){
+        self.name = name
+        self.RSSIId = RSSIId
+        self.UUID = UUID
+    }
 }
