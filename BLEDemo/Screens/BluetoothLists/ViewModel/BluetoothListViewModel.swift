@@ -22,7 +22,7 @@ class BluetoothListViewModel: NSObject {
     var manager: CBCentralManager? = nil
     var reloadTableView: (() -> Void)?
     var refreshData: ((Bool) -> Void)?
-
+    
     override init(){
         super.init()
     }
@@ -86,6 +86,7 @@ extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate
             scanBLEDevice()
             break
         default:
+            reloadTableView?()
             break
         }
     }

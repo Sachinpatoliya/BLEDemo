@@ -49,14 +49,24 @@
                                     <constraint firstAttribute="height" constant="20" id="wyG-K8-eRv"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No bluetooth device found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtf-lm-yh3">
+                                <rect key="frame" x="20" y="438" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vtf-lm-yh3" secondAttribute="trailing" constant="20" id="2IA-uc-OH2"/>
+                            <constraint firstItem="Vtf-lm-yh3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4zc-db-6Kc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="56o-I5-Uvo" secondAttribute="bottom" id="AqT-vy-dAx"/>
                             <constraint firstItem="2Zc-wg-ZEI" firstAttribute="centerY" secondItem="iIg-5N-lm8" secondAttribute="centerY" id="Bko-nv-5yO"/>
                             <constraint firstItem="56o-I5-Uvo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="E02-wJ-lwA"/>
+                            <constraint firstItem="Vtf-lm-yh3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LcW-W4-gN2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2Zc-wg-ZEI" secondAttribute="trailing" constant="20" id="Ltz-7S-Ejg"/>
+                            <constraint firstItem="Vtf-lm-yh3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PlP-WN-Cil"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jVZ-gr-Qc0" secondAttribute="trailing" constant="20" id="Ya6-k4-KMl"/>
                             <constraint firstItem="56o-I5-Uvo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fax-wc-XQ8"/>
                             <constraint firstItem="56o-I5-Uvo" firstAttribute="top" secondItem="jVZ-gr-Qc0" secondAttribute="bottom" constant="10" id="kDa-1c-NNW"/>
@@ -67,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="2Zc-wg-ZEI" id="FY3-co-nFJ"/>
+                        <outlet property="noDevicesFound" destination="Vtf-lm-yh3" id="K2g-qS-Tec"/>
                         <outlet property="refreshButton" destination="jVZ-gr-Qc0" id="P4o-qe-4Kh"/>
                         <outlet property="tblBluetoothList" destination="56o-I5-Uvo" id="qK8-Hb-Dsg"/>
                     </connections>

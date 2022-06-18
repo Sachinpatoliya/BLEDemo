@@ -13,6 +13,7 @@ class BluetoothListViewController: UIViewController {
     @IBOutlet weak var tblBluetoothList: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var noDevicesFound: UILabel!
     
     //MARK:- Variables
     lazy var viewModel = {
@@ -35,6 +36,7 @@ class BluetoothListViewController: UIViewController {
         // Reload TableView closure
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
+                self?.noDevicesFound.isHidden = self?.viewModel.bluetoothList.count ?? 0 <= 0 ? false : true
                 self?.tblBluetoothList.reloadData()
             }
         }
