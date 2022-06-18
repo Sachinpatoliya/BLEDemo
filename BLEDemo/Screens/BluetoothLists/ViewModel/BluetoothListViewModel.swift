@@ -79,7 +79,7 @@ extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate
         print(error!)
     }
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) { //обновление состояния менеджера
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
         switch central.state {
         case .poweredOn:
