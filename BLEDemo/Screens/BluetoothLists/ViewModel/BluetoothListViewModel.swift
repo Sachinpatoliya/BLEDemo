@@ -10,6 +10,8 @@ import CoreBluetooth
 
 class BluetoothListViewModel: NSObject {
     var bluetoothService: BluetoothListViewModel!
+    var timer = Timer()
+    var stopTimer = Timer()
 
     var bluetoothList = [BluetoothListModel]() {
         didSet {
@@ -19,6 +21,7 @@ class BluetoothListViewModel: NSObject {
 
     var manager: CBCentralManager? = nil
     var reloadTableView: (() -> Void)?
+    var refreshData: ((Bool) -> Void)?
 
     override init(){
         super.init()
@@ -30,18 +33,42 @@ class BluetoothListViewModel: NSObject {
     
     //Scan near by bluetooth devices
     func scanBLEDevice(){
+        timer.invalidate()
+        stopTimer.invalidate()
         manager?.scanForPeripherals(withServices: nil, options: nil)
+        stopScanTimer()
     }
+    
+    func startTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
+    }
+    
+    @objc func timerAction() {
+        print("Start Timer")
+        refreshData?(true)
+        scanBLEDevice()
+    }
+
+    func stopScanTimer(){
+        stopTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(stopTimerAction), userInfo: nil, repeats: false)
+    }
+    
+    @objc func stopTimerAction() {
+        print("Stop Timer")
+        refreshData?(false)
+        startTimer()
+        manager?.stopScan()
+    }
+
 }
 
 extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print("Device: \(peripheral)")
         print(RSSI)
-        bluetoothList.removeAll { items in
-            items.UUID == peripheral.identifier.uuidString
+        if bluetoothList.filter({$0.UUID == peripheral.identifier.uuidString}).count <= 0{
+            bluetoothList.append(BluetoothListModel(name: peripheral.name ?? "", RSSIId: RSSI, UUID: peripheral.identifier.uuidString))
         }
-        bluetoothList.append(BluetoothListModel(name: peripheral.name ?? "", RSSIId: RSSI, UUID: peripheral.identifier.uuidString))
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

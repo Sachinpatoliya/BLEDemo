@@ -11,6 +11,8 @@ class BluetoothListViewController: UIViewController {
 
     //MARK:- IBOutlets
     @IBOutlet weak var tblBluetoothList: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     //MARK:- Variables
     lazy var viewModel = {
@@ -21,6 +23,7 @@ class BluetoothListViewController: UIViewController {
         super.viewDidLoad()
 
         tblBluetoothList.register(UINib (nibName: "BluetoothCell", bundle: nil), forCellReuseIdentifier: "BluetoothCell")
+        activityIndicator.startAnimating()
         //Initialize View Model
         initViewModel()
     }
@@ -35,13 +38,24 @@ class BluetoothListViewController: UIViewController {
                 self?.tblBluetoothList.reloadData()
             }
         }
+        
+        //show activity indicator
+        viewModel.refreshData = { isRefresh in
+            self.handleActivityIndicator(isRefresh: isRefresh)
+        }
     }
     
     //MARK:- Button Actions
     @IBAction func refreshAction(_ sender: UIButton){
-        
+        viewModel.scanBLEDevice()
+        handleActivityIndicator(isRefresh: true)
     }
     
+    func handleActivityIndicator(isRefresh: Bool){
+        isRefresh ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
+        self.refreshButton.isHidden = isRefresh
+        self.activityIndicator.isHidden = !isRefresh
+    }
 }
 
 
