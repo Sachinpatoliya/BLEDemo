@@ -38,6 +38,12 @@ extension BluetoothListViewModel: CBCentralManagerDelegate, CBPeripheralDelegate
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print("Device: \(peripheral)")
         print(RSSI)
+        if Int(RSSI.intValue) >= -50{
+            bluetoothList.removeAll { items in
+                items.UUID == peripheral.identifier.uuidString
+            }
+            bluetoothList.append(BluetoothListModel(name: peripheral.name ?? "", RSSIId: RSSI, UUID: peripheral.identifier.uuidString))
+        }
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
